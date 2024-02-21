@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Scoreboard</title>
+  <link rel="stylesheet" href="https://use.typekit.net/qro8nwd.css" />
+  <link rel="stylesheet" href="assets/css/global.css" />
+
+  <script src="assets/js/libs/jquery-3.6.1.min.js"></script>
+  <script src="assets/js/libs/webcg-framework.umd.js"></script>
+  <script type="text/javascript" src="assets/js/scoreboard.js"></script>
+
+  <link rel="preload" href="assets/fonts/Busky-Regular.otf" as="font" type="font/otf">
+  <link rel="preload" href="assets/fonts/ProximaNova-ScOsfExtraCondensedBold.otf" as="font" type="font/otf">
+
+  <style>
+    @font-face {
+      font-family: "Proxima Nova";
+      font-weight: bold;
+      src: url(assets/fonts/ProximaNova-ExtraCondensedBold.otf) format("opentype");
+    }
+
+    @font-face {
+      font-family: "Busky";
+      font-weight: regular;
+      src: url(assets/fonts/Busky-Regular.otf) format("opentype");
+    }
+
+    body {
+      width: 100%;
+      height: 100dvh;
+      margin: 0;
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .player-card {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 0px 0px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .player-image {
+      width: 240px;
+      height: 240px;
+      /* background-color: #053859; */
+      margin-right: 140px;
+    }
+
+    .player-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .player-name {
+      font-family: "Proxima Nova";
+      font-weight: bold;
+      font-size: 180px;
+      color: #053859;
+      text-transform: uppercase;
+      text-align: left;
+      width: 100%;
+    }
+
+    .player-score {
+      font-family: "Busky";
+      font-weight: regular;
+      font-size: 200px;
+      color: #053859;
+      text-transform: uppercase;
+      margin-top: -30px;
+      margin-left: 160px;
+    }
+  </style>
+</head>
+
+<body data-api-host="">
+  <div class="overlay">
+    <div class="player-card">
+      <div class="player-image player1"><img hidden></div>
+      <div class="player-name player1"></div>
+      <div class="player-score player1"></div>
+      <div class="player-image player2"><img hidden></div>
+      <div class="player-name player2"></div>
+      <div class="player-score player2"></div>
+      <div class="player-image player3"><img hidden></div>
+      <div class="player-name player3"></div>
+      <div class="player-score player3"></div>
+    </div>
+  </div>
+</body>
+
+</html>
