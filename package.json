@@ -1,0 +1,22 @@
+{
+  "name": "listen-hear-gfx",
+  "version": "1.0.0",
+  "description": "The graphics package for the Listen Hear! production at the University of Surrey, 2024.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grintroy/listen-hear-gfx.git"
+  },
+  "author": "Grigorii Troinenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grintroy/listen-hear-gfx/issues"
+  },
+  "homepage": "https://github.com/grintroy/listen-hear-gfx#readme",
+  "dependencies": {
+    "pitchy": "^4.1.0"
+  }
+}
