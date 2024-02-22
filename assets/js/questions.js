@@ -22,17 +22,24 @@ function showPage() {
 }
 
 let last_state = {
-	question_showing: false
+	question_showing: null
 };
+let round = null;
+
+const questionPing = new Audio("assets/audio/question_ping.wav");
+questionPing.volume = 0.2;
 
 function updatePage(questions) {
+	// Define elements
+	const g1a_el = document.querySelector("#g-announce-1");
+	const g2a_el = document.querySelector("#g-announce-2");
+	const g3a_el = document.querySelector("#g-announce-3");
 	const g1r1_el = document.querySelector(".g1-question-text.r-1");
 	const g1r2_el = document.querySelector(".g1-question-text.r-2");
 	const g1r3_el = document.querySelector(".g1-question-text.r-3");
 	const g3r1_el = document.querySelector(".g3-question.r-1");
 	const g3r2_el = document.querySelector(".g3-question.r-2");
 	const g3r3_el = document.querySelector(".g3-question.r-3");
-
 	const g3r1A_el = document.querySelector(".g3-question-text.r-1.q-a");
 	const g3r1B_el = document.querySelector(".g3-question-text.r-1.q-b");
 	const g3r1C_el = document.querySelector(".g3-question-text.r-1.q-c");
@@ -43,19 +50,13 @@ function updatePage(questions) {
 	const g3r3B_el = document.querySelector(".g3-question-text.r-3.q-b");
 	const g3r3C_el = document.querySelector(".g3-question-text.r-3.q-c");
 
+	// Hide all questions and announcement cards
 	q_els = document.querySelectorAll(".q-el");
 	q_els.forEach((el) => (el.hidden = true));
+	g_announce_els = document.querySelectorAll(".g-announce");
+	g_announce_els.forEach((el) => (el.hidden = true));
 
-	if (
-		last_state.question_showing !== questions.showing &&
-		questions.showing !== "None"
-	) {
-		last_state.question_showing = questions.showing;
-		const audio = new Audio("assets/audio/question_ping.wav");
-		audio.volume = 0.2;
-		audio.play();
-	}
-
+	// Update elements
 	g1r1_el.innerHTML = questions.g1r1;
 	g1r2_el.innerHTML = questions.g1r2;
 	g1r3_el.innerHTML = questions.g1r3;
@@ -68,13 +69,37 @@ function updatePage(questions) {
 	g3r3A_el.innerHTML = questions.g3r3A;
 	g3r3B_el.innerHTML = questions.g3r3B;
 	g3r3C_el.innerHTML = questions.g3r3C;
+	g_announce_els.forEach((el) => {
+		el.style.backgroundImage = `url(assets/images/g${el.id.slice(
+			-1
+		)}a.png)`;
+	});
 
+	// Detect when a state changes to the question and play a sound
+	if (
+		questions.showing.match(/^g\d+r\d+$/) &&
+		last_state.question_showing !== questions.showing
+	) {
+		last_state.question_showing = questions.showing;
+		questionPing.play();
+	}
+
+	// Show the correct element
+	if (questions.showing.match(/^g\d+r\d+$/)) {
+		// Question
+		eval(questions.showing + "_el.hidden = false");
+		round = parseInt(questions.showing.slice(-1));
+	} else if (questions.showing.match(/^g\d+a$/)) {
+		// Announcement card
+		eval(questions.showing + "_el.hidden = false");
+	}
+
+	// Assign correct and incorrect classes to the questions
 	const g3_correct_answers = [
 		questions.g3r1correct,
 		questions.g3r2correct,
 		questions.g3r3correct
 	];
-
 	let i = 1;
 	for (answer of g3_correct_answers) {
 		const els = document.querySelectorAll(`.g3-question-text.r-${i}`);
@@ -89,13 +114,7 @@ function updatePage(questions) {
 		i++;
 	}
 
-	let round = null;
-
-	if (questions.showing !== "None") {
-		eval(questions.showing + "_el.hidden = false");
-		round = parseInt(questions.showing.slice(-1));
-	}
-
+	// Highlight correct and incorrect answers
 	if (questions.g3showcorrect) {
 		const q3_r_el = document.querySelector(`.g3-question.r-${round}`);
 		const g3_correct_els = q3_r_el.querySelector(".q-correct");
@@ -111,6 +130,7 @@ function updatePage(questions) {
 		}
 	}
 
+	// Ensure the page is shown
 	if (!pageShown) {
 		showPage();
 		pageShown = true;

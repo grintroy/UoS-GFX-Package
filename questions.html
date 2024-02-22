@@ -12,6 +12,10 @@
   <script type="text/javascript" src="assets/js/questions.js"></script>
 
   <link rel="preload" href="assets/fonts/ProximaNova-ExtraCondensedBold.otf" as="font" type="font/otf">
+  <link rel="preload" href="assets/audio/question_ping.wav" as="audio">
+  <link rel="preload" href="assets/images/g1a.png" as="image">
+  <link rel="preload" href="assets/images/g2a.png" as="image">
+  <link rel="preload" href="assets/images/g3a.png" as="image">
 
   <style>
     @font-face {
@@ -36,8 +40,7 @@
       transition: opacity 0.5s;
     }
 
-    #g1,
-    #g3 {
+    .game-overlay {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -86,17 +89,27 @@
       width: fit-content;
       margin: auto;
     }
+
+    .g-announce {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 
 <body data-api-host="">
   <div class="overlay">
-    <div id="g1">
+    <div class="game-overlay">
+      <div class="g-announce" id="g-announce-1"></div>
+      <div class="g-announce" id="g-announce-2"></div>
+      <div class="g-announce" id="g-announce-3"></div>
+    </div>
+    <div class="game-overlay">
       <p class="q-el g1-question-text r-1"></p>
       <p class="q-el g1-question-text r-2"></p>
       <p class="q-el g1-question-text r-3"></p>
     </div>
-    <div id="g3">
+    <div class="game-overlay">
       <div class="q-el g3-question r-1">
         <ol type="A">
           <li class="g3-question-text r-1 q-a"></li>
