@@ -81,6 +81,9 @@ function updatePage(questions) {
 		last_state.question_showing !== questions.showing
 	) {
 		last_state.question_showing = questions.showing;
+		console.log("Playing question ping");
+		questionPing.pause();
+		questionPing.currentTime = 0;
 		questionPing.play();
 	}
 
