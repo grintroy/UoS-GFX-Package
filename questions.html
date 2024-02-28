@@ -24,6 +24,12 @@
       src: url(assets/fonts/ProximaNova-ExtraCondensedBold.otf) format("opentype");
     }
 
+    @font-face {
+      font-family: "Proxima Nova";
+      font-weight: semibold;
+      src: url(assets/fonts/ProximaNova-Semibold.otf) format("opentype");
+    }
+
     body {
       width: 100%;
       height: 100vh;
@@ -74,7 +80,7 @@
     .g3-question-text {
       font-family: "Proxima Nova";
       font-weight: bold;
-      font-size: 80px;
+      font-size: 75px;
       color: #053859;
       text-align: left;
       text-transform: uppercase;
@@ -85,8 +91,23 @@
       transition: opacity 0.5s, color 0.5s;
     }
 
-    ol {
+    .g3-question-author {
+      font-family: "Proxima Nova";
+      font-weight: semibold;
+      font-size: 50px;
+      color: #053859;
+      text-align: center;
+      text-transform: uppercase;
+      margin: 40px 0;
+    }
+
+    hr {
       padding-left: 1.6em;
+      margin-bottom: 60px;
+    }
+
+    ol {
+      padding-left: 3.5em;
       width: fit-content;
       margin: auto;
     }
@@ -112,6 +133,8 @@
     </div>
     <div class="game-overlay">
       <div class="q-el g3-question r-1">
+        <p class="g3-question-author r-1"></p>
+        <hr>
         <ol type="A">
           <li class="g3-question-text r-1 q-a"></li>
           <li class="g3-question-text r-1 q-b"></li>
@@ -119,6 +142,8 @@
         </ol>
       </div>
       <div class="q-el g3-question r-2">
+        <p class="g3-question-author r-2"></p>
+        <hr>
         <ol type="A">
           <li class="g3-question-text r-2 q-a"></li>
           <li class="g3-question-text r-2 q-b"></li>
@@ -126,6 +151,8 @@
         </ol>
       </div>
       <div class="q-el g3-question r-3">
+        <p class="g3-question-author r-3"></p>
+        <hr>
         <ol type="A">
           <li class="g3-question-text r-3 q-a"></li>
           <li class="g3-question-text r-3 q-b"></li>
